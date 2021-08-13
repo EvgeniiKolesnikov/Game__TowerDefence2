@@ -13,11 +13,13 @@ public class Enemy : MonoBehaviour
     private Transform currentPoint;
     private int index;
     private Vector3 direction;
+    ResourseManager rm;
 
     void Start()
     {
+        rm = FindObjectOfType<ResourseManager>(); 
         index = 0;
-        HP = maxHP;
+        // HP = maxHP;
         currentPoint = points[index];
     }
 
@@ -39,6 +41,9 @@ public class Enemy : MonoBehaviour
 		}
     }
 
+    public void SetHP(float newHP) {
+        HP = newHP;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
@@ -46,6 +51,7 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             HP -= other.GetComponent<Bullet>().damage;
             if (HP <= 0) {
+                rm.EnemyKill();
                 Destroy(gameObject);
             }
         }

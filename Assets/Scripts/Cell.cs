@@ -10,9 +10,17 @@ public class Cell : MonoBehaviour
     public bool canBuild;
     public Tower towerPrefab;
 
+    ResourseManager rm;
+
+    private void Start()
+    {
+        rm = FindObjectOfType<ResourseManager>(); 
+    }
+
 	private void OnMouseUp()
 	{
-        if (canBuild) {
+        if (canBuild && rm.gold >= rm.towerCost) {
+            rm.BuildTower();
             Tower tower = Instantiate(
                 towerPrefab, 
                 transform.position, 

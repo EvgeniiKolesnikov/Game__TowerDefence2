@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
 	public Enemy enemyPrefab;
 	public float timeToSpawn;
 	public Transform[] points;
+	public float mainHP = 100, increaseHP = 20;
 
 	private float timer;
 
@@ -18,11 +19,13 @@ public class Spawner : MonoBehaviour
 	private void Update()
 	{
 		timer -= Time.deltaTime;
-
 		if (timer <=0) {
 			Enemy enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
 			enemy.points = points;
+            enemy.SetHP(mainHP);
+            mainHP += increaseHP;
 			timer = timeToSpawn;
+            
 		}
 	}
 }
