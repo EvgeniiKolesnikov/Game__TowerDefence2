@@ -7,7 +7,9 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float rotationSpeed;
     public Transform[] points;
+    public float maxHP = 100;
 
+    private float HP;
     private Transform currentPoint;
     private int index;
     private Vector3 direction;
@@ -15,6 +17,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         index = 0;
+        HP = maxHP;
         currentPoint = points[index];
     }
 
@@ -34,5 +37,17 @@ public class Enemy : MonoBehaviour
                 currentPoint = points[index];
             }
 		}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+            HP -= other.GetComponent<Bullet>().damage;
+            if (HP <= 0) {
+                Destroy(gameObject);
+            }
+        }
     }
 }
