@@ -106,5 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMaterial: {fileID: 2100000, guid: 15d235d8fa86ef44a9d0dc21e1cade29, type: 2}
-  overMaterial: {fileID: 2100000, guid: fa2d7503e50eebd4e946954dd9ffd0aa, type: 2}
+  canMaterial: {fileID: 2100000, guid: fa2d7503e50eebd4e946954dd9ffd0aa, type: 2}
+  cantMaterial: {fileID: 2100000, guid: f82d83ef7d461cd49ac3fa8716082815, type: 2}
   canBuild: 1
